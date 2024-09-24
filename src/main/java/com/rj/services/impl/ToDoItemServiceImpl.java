@@ -7,8 +7,6 @@ import com.rj.services.ToDoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import static com.rj.mapper.ToDoItemMapper.mapToDoDTO;
