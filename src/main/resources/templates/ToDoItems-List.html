@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: page_head}">
+    <meta charset="UTF-8">
+    <title>ToDo Items</title>
+</head>
+
+<script>
+
+
+
+</script>
+
+
+
+<body>
+    <div class="display-container">
+
+        <nav th:replace="~{layout :: page_navbar}"></nav>
+
+        <main>
+            <div class="center-container">
+                <h2>
+                    To Do Items
+                </h2>
+                <a th:href="@{/todoitems/new}"><button class="new">New</button></a>
+            </div>
+            <div class="center-container">
+                <form th:action="@{/todoitems/search}">
+                    <input type="text" class="form" placeholder="Search by Task" name="query">
+                </form>
+            </div>
+            <div class="card" th:each="item :${ToDoItems}">
+                <h3>Task: <span th:text="${item.task}"></span></h3>
+                <h3>Description: <span  th:text="${item.description}"></span></h3>
+                <h4><a th:href="@{/todoitems/{itemId}/edit(itemId=${item.id})}">Edit</a></h4>
+                <h4><a class="success" th:href="@{/todoitems/{itemId}/delete(itemId=${item.id})}">Complete</a></h4>
+            </div>
+        </main>
+
+        <footer th:replace="~{layout :: page_footer}"></footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+*{
+    --success-color: #04DC45;
+    --primary-shade: #04B439;
+    --body-background-color: #26292C;
+}
+
+div.card {
+    background-color: grey;
+    border-radius: 10px;
+    width: fit-content(100px);
+    height: fit-content(100px);
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+*{
+    color: white;
+    font-family: Moderustic, sans-serif;
+}
+
+input[type="checkbox"] {
+    border-radius: 2px;
+    accent-color: var(--success-color);
+    height: 25px;
+    width: 25px;
+}
+
+a:hover{
+    color: blueviolet;
+}
+a{
+    text-decoration: none;
+}
+body {
+    background-color: var(--body-background-color);
+}
+main{
+    flex: 1;
+}
+nav.navbar {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+footer{
+    padding: 5px;
+}
+div.center-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    margin: 10px;
+}
+div.display-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+div.nav{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+div.header{
+    text-align: center;
+}
+input.form{
+    width: 60%;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 2px;
+    height: 45px;
+    border: none;
+    border-bottom: 2px solid white;
+    box-sizing: border-box;
+}
+button.form{
+    width: 60%;
+}
+button:hover{
+    font-weight: bold;
+}
+div.form-input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+div.form-button{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+button{
+    padding: 10px;
+    border-style: solid;
+    border-radius: 8px;
+    height: 50px;
+    text-align: center;
+}
+button.new{
+    width: 40%;
+    background-color: rgba(100, 100, 100, 100);
+    border-style: none;
+    color: white;
+}
+p.danger{
+    color: darkred;
+}
+a:hover.danger{
+    color: darkred;
+}
+a:hover.success{
+    color: darkgreen;
+}

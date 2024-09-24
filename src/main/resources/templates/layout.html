@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="page_head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>ToDoItems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar" th:fragment="page_navbar">
+    <h1 class="header"><a th:href="@{/}">DbDemo!</a></h1>
+        <div class="nav">
+                    <h2><a th:href="@{/todoitems}">ToDo Items</a></h2>
+        </div>
+</nav>
+<body th:fragment="body">
+
+</body>
+<footer th:fragment="page_footer">
+    <h1 class="link">Created by Rj <a href="https://github.com/Sompanelle/" target="_blank">Github</a></h1>
+</footer>
+</html>
