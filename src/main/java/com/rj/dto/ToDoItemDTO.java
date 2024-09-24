@@ -3,8 +3,8 @@ package com.rj.dto;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +16,8 @@ public class ToDoItemDTO
     @NotEmpty(message = "Task cannot be empty")
     private String task;
     private String description;
+    @CreationTimestamp
     private LocalDateTime creationDate;
+    @UpdateTimestamp
     private LocalDateTime updatedDate;
 }
