@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="to_do_items")
+@Table(name="ToDoItems")
 public class ToDoItem
 {
     @Id
@@ -27,5 +27,8 @@ public class ToDoItem
     private LocalDateTime creationDate;
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "todolists_id")
+    private ToDoList todolists;
 }
 

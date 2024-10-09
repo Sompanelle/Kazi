@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: page_head}">
+    <meta charset="UTF-8">
+    <title>Create ToDo Items</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<style>
+</style>
+<body>
+    <div class="display-container">
+        <nav th:replace="~{layout :: page_navbar}"></nav>
+        <main>
+            <div class="center-container">
+                <h1>ToDoLists</h1>
+            </div>
+            <div th:each="item: ${ToDoLists}">
+                <h3>Name: <span th:text="${item.name}"></span></h3>
+            </div>
+        </main>
+        <footer th:replace="~{layout :: page_footer}"></footer>
+    </div>
+</body>
+</html>
