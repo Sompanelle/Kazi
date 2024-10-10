@@ -13,5 +13,5 @@ public interface ToDoItemService
     List<ToDoItemDTO> SearchItemByTask(String query);
     List<ToDoItemDTO> findAllToDoItems();
     ToDoItemDTO findItembyId(long itemId);
-
+    List<ToDoItemDTO> findByListId(long listId);
 }

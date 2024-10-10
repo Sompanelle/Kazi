@@ -29,6 +29,6 @@ public class ToDoItem
     private LocalDateTime updatedDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "todolists_id")
-    private ToDoList todolists;
+    private ToDoList toDoList;
 }
 

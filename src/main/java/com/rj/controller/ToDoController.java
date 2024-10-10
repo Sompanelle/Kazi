@@ -2,7 +2,9 @@ package com.rj.controller;
 
 import com.rj.dto.ToDoItemDTO;
 import com.rj.models.ToDoItem;
+import com.rj.models.ToDoList;
 import com.rj.services.ToDoItemService;
+import com.rj.services.ToDoListService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,13 @@ import java.util.List;
 public class ToDoController
 {
     private ToDoItemService toDoItemService;
+    private ToDoListService toDoListService;
 
     @Autowired
-    public ToDoController(ToDoItemService toDoItemService) {
-        this.toDoItemService = toDoItemService;
+    public ToDoController(ToDoItemService ToDoItemService, ToDoListService ToDoListService)
+    {
+        this.toDoItemService = ToDoItemService;
+        this.toDoListService = ToDoListService;
     }
 
     @GetMapping("/")
@@ -48,6 +53,8 @@ public class ToDoController
     public String getCreateToDoItem(Model model)
     {
         ToDoItem toDoItem = new ToDoItem();
+        List<ToDoList> toDoLists = toDoListService.findAllToDoLists();
+        model.addAttribute("toDoLists", toDoLists);
         model.addAttribute("toDoItem", toDoItem );
         return "ToDoItems-New.html";
     }
@@ -58,7 +65,7 @@ public class ToDoController
     {
         ToDoItemDTO item = toDoItemService.findItembyId(itemId);
         model.addAttribute("toDoItem", item);
-        return "ToDoItems-Edit";
+        return "ToDoItem-Edit";
     }
 
     @GetMapping("todoitems/{itemId}/delete")
@@ -88,7 +95,7 @@ public class ToDoController
     {
         if (bindingResult.hasErrors())
         {
-            return "ToDoItems-Edit";
+            return "ToDoItem-Edit";
         }
         toDoItem.setId(itemId);
         toDoItemService.updateItem(toDoItem);

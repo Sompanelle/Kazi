@@ -12,7 +12,12 @@
 <nav class="navbar" th:fragment="page_navbar">
     <h1 class="header"><a th:href="@{/}">DbDemo!</a></h1>
         <div class="nav">
-                    <h2><a th:href="@{/todoitems}">ToDo Items</a></h2>
+                    <div>
+                        <h2><a th:href="@{/todoitems}">ToDo Items</a></h2>
+                    </div>
+                    <div>
+                        <h2><a th:href="@{/todolists}">ToDo Lists</a></h2>
+                    </div>
         </div>
 </nav>
 <body th:fragment="body">

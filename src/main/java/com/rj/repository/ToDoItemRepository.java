@@ -13,4 +13,5 @@ public interface ToDoItemRepository extends JpaRepository<ToDoItem, Long>
     Optional<ToDoItem> findById(long Id);
     @Query("Select t from ToDoItem t Where t.task Like concat('%', :query, '%') ")
     List<ToDoItem> SearchbyTask(String query);
+    List<ToDoItem> findByToDoListId(long listId);
 }

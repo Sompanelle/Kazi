@@ -1,22 +1,59 @@
 *{
     --success-color: #04DC45;
-    --primary-shade: #04B439;
+    --success-shade: #04B439;
     --body-background-color: #26292C;
-}
-
-div.card {
-    background-color: grey;
-    border-radius: 10px;
-    width: fit-content(100px);
-    height: fit-content(100px);
-    margin: 10px;
-    padding: 15px;
-    text-align: center;
-    color: white;
-}
-*{
+    --danger-color: #dc042f;
+    --danger-shade: #A90425;
     color: white;
     font-family: Moderustic, sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+a.danger{
+    color: var(--danger-color);
+}
+
+a:hover.danger{
+    color: var(--danger-shade);
+}
+a:hover.success{
+    color: var(--success-color);;
+}
+a:hover{
+    color: blueviolet;
+}
+a.edit:hover{
+    color: #9F9D9D;
+}
+
+body {
+    background-color: var(--body-background-color);
+}
+
+button{
+    padding: 10px;
+    border-style: solid;
+    border-radius: 8px;
+    height: 50px;
+    text-align: center;
+}
+button.new{
+    width: 40%;
+    background-color: rgba(100, 100, 100, 100);
+    border-style: none;
+    color: white;
+}
+button.save{
+    background-color: var(--success-color);
+    border-width: 0px;
+    font-weight: bold;
+}
+
+button.save:hover{
+    background-color: var(--success-shade);
+    border-width: 0px;
 }
 
 input[type="checkbox"] {
@@ -26,15 +63,22 @@ input[type="checkbox"] {
     width: 25px;
 }
 
-a:hover{
-    color: blueviolet;
+input.form{
+    width: 60%;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 2px;
+    height: 45px;
+    border: none;
+    border-bottom: 2px solid white;
+    box-sizing: border-box;
 }
-a{
-    text-decoration: none;
+
+
+p.danger{
+    color: var(--danger-color);
 }
-body {
-    background-color: var(--body-background-color);
-}
+
 main{
     flex: 1;
 }
@@ -63,21 +107,13 @@ div.nav{
     margin-left: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
+    gap: 20px;
 }
 div.header{
     text-align: center;
 }
-input.form{
-    width: 60%;
-    padding: 10px;
-    background-color: transparent;
-    border-radius: 2px;
-    height: 45px;
-    border: none;
-    border-bottom: 2px solid white;
-    box-sizing: border-box;
-}
+
 button.form{
     width: 60%;
 }
@@ -94,25 +130,36 @@ div.form-button{
     display: flex;
     justify-content: center;
 }
-button{
-    padding: 10px;
-    border-style: solid;
-    border-radius: 8px;
-    height: 50px;
+
+div.card {
+    background-color: grey;
+    border-radius: 10px;
+    width: fit-content(100px);
+    height: fit-content(100px);
+    margin: 10px;
+    padding: 15px;
     text-align: center;
-}
-button.new{
-    width: 40%;
-    background-color: rgba(100, 100, 100, 100);
-    border-style: none;
     color: white;
 }
-p.danger{
-    color: darkred;
+select.select-input{
+    padding: 10px;
+    background-color: transparent;
+    border-style: solid;
+    border-radius: 10px;
+    color: white;
+    appearance: none;
+    white-space: none;
 }
-a:hover.danger{
-    color: darkred;
+option.option-input{
+    background-color: transparent;
+    padding: 5px;
+    text-align: center;
 }
-a:hover.success{
-    color: darkgreen;
+
+option.option-input select{
+    display: none;
+}
+
+option.option-input{
+    position: relative;
 }

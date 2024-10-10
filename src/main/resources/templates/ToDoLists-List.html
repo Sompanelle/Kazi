@@ -15,9 +15,11 @@
         <main>
             <div class="center-container">
                 <h1>ToDoLists</h1>
+                <a th:href="@{/todolists/new}"><button class="new">New</button></a>
             </div>
-            <div th:each="item: ${ToDoLists}">
-                <h3>Name: <span th:text="${item.name}"></span></h3>
+
+            <div class="card" th:each="item: ${ToDoLists}">
+                <a th:href="@{/todolists/{listId}(listId= ${item.id})}"><div><h3>Name: <span th:text="${item.name}"></span></h3></div></a>
             </div>
         </main>
         <footer th:replace="~{layout :: page_footer}"></footer>

@@ -1,23 +1,23 @@
 ##replace the lines with the "$"
 services:
   app:
-    image: idkspanish/dbdemo
+    image: idkspanish/dbdemo:latest
     container_name: app
     ports:
       - "5000:8080"
     depends_on:
         - db
     environment:
-      - DB_URL=jdbc:postgresql://db:5432/${Db_Name}
-      - DB_USER=${Db_User}
-      - DB_PASS=${Db_Pass}
+      - DB_URL=jdbc:postgresql://db:5432/todo
+      - DB_USER=box
+      - DB_PASS=man
 
   db:
     image: postgres
     container_name: db
     environment:
-      - POSTGRES_USER=${Db_User}
-      - POSTGRES_PASSWORD=${Db_Pass}
-      - POSTGRES_DB=${Db_Name}
+      - POSTGRES_USER=box
+      - POSTGRES_PASSWORD=man
+      - POSTGRES_DB=todo
     ports:
       - "5433:5432"
