@@ -17,6 +17,7 @@ public class ToDoItemMapper
                 .description(ToDoItem.getDescription())
                 .creationDate(ToDoItem.getCreationDate())
                 .updatedDate(LocalDateTime.now())
+                .toDoList(ToDoItem.getToDoList())
                 .build();
         return itemDto;
     }
@@ -31,6 +32,7 @@ public class ToDoItemMapper
                 .description(toDoItem.getDescription())
                 .creationDate(toDoItem.getCreationDate())
                 .updatedDate(LocalDateTime.now())
+                .toDoList(toDoItem.getToDoList())
                 .build();
         return item;
     }

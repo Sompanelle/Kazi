@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{layout :: page_head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="display-container">
+
+    <nav th:replace="~{layout :: page_navbar}"></nav>
+
+    <main>
+        <div class="center-container">
+            <h2>
+                <span th:text="${ToDoList.name}"></span>
+            </h2>
+            <a th:href="@{/todolists/{itemId}/new(itemId=${ToDoList.id})}"><button class="new">New</button></a>
+        </div>
+        <div class="center-container">
+        </div>
+        <div class="card" th:each="item :${Items}">
+            <h3>Task: <span th:text="${item.task}"></span></h3>
+            <h3 th:if="${!item.description.isEmpty()}">Description: <span  th:text="${item.description}"></span></h3>
+            <h4><a class="edit" th:href="@{/todolists/{listId}/{itemId}/edit(itemId=${item.id},listId=${ToDoList.id})}">Edit</a></h4>
+            <h4><a class="success" th:href="@{/todolists/{listId}/{itemId}/delete(itemId=${item.id},listId=${listId})}">Complete</a></h4>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout :: page_footer}"></footer>
+</div>
+</body>
+</html>

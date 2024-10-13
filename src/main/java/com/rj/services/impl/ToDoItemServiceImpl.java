@@ -50,6 +50,12 @@ public class ToDoItemServiceImpl implements ToDoItemService
     }
 
     @Override
+    public List<ToDoItemDTO> findByListId(long listId) {
+        List<ToDoItem> items = toDoItemRepository.findByToDoListId(listId);
+        return items.stream().map((item) -> mapToDoDTO(item)).collect(Collectors.toList());
+    }
+
+    @Override
     public void updateItem(ToDoItemDTO DTO) {
         ToDoItem item = mapToItem(DTO);
         toDoItemRepository.save(item);

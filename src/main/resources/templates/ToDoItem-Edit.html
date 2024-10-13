@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{layout :: page_head}">
+    <meta charset="UTF-8">
+    <title>Edit ToDo Item</title>
+</head>
+
+<body>
+<div class="display-container">
+    <nav th:replace="~{layout :: page_navbar}"></nav>
+
+    <main>
+
+        <div class="center-container">
+            <h1>Edit ToDo Item</h1>
+        </div>
+
+        <div>
+            <form method="post" th:action="@{/todoitems/{itemId}/edit(itemId=${toDoItem.id})}" th:object="${toDoItem}">
+
+                <input class="form" type="hidden" th:field="*{id}">
+
+                <input class="form" type="hidden" th:field="*{toDoList}">
+
+                <div class="form-input">
+                    <input class="form" type="text" id="Task" name="Task" placeholder="Task..." th:field="*{task}">
+                    <p class="danger" th:if="${#fields.hasErrors('task')}" th:errors="*{task}"></p>
+                </div>
+
+                <div class="form-input">
+                    <input class="form" type="text" id="Description" name="Description" placeholder="Description..." th:field="*{description}">
+                </div>
+
+                <div class="form-button">
+                    <button class="form save" type="submit">Save</button>
+                </div>
+
+            </form>
+
+            <div class="center-container" th:object="${toDoItem}">
+                <p class="danger"><a class="danger" th:href="@{~/todoitems/{itemId}/delete(itemId=*{id})}">Delete?</a></p>
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer th:replace="~{layout :: page_footer}"></footer>
+</div>
+</body>
+</html>

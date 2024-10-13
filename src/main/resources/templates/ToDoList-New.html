@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: page_head}">
+    <meta charset="UTF-8">
+    <title>Create ToDo List</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<div class="display-container">
+    <nav th:replace="~{layout :: page_navbar}"></nav>
+
+    <main>
+
+        <div class="">
+
+            <div class="center-container">
+                <h1>New ToDo List</h1>
+            </div>
+            <div>
+
+                <form method="post" th:action="@{/todolists/new}" th:object="${toDoList}">
+
+                    <input class="form" type="hidden" th:field="*{id}">
+
+                    <div class="form-input">
+                        <input class="form" type="text" id="Name" name="Name" placeholder="Name..." th:field="*{name}">
+                        <p class="danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </div>
+
+                    <div class="form-input">
+                        <input class="form" type="text" id="Description" name="Description" placeholder="Description..." th:field="*{description}">
+                    </div>
+
+
+                    <div class="form-button">
+                        <button class="form save" type="submit">Save</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer th:replace="~{layout :: page_footer}"></footer>
+</div>
+</body>
+
+</html>
