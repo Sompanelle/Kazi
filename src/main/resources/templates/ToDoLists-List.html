@@ -19,7 +19,8 @@
             </div>
 
             <div class="card" th:each="item: ${ToDoLists}">
-                <a th:href="@{/todolists/{listId}(listId= ${item.id})}"><div><h3>Name: <span th:text="${item.name}"></span></h3></div></a>
+                <a class="underline" th:href="@{/todolists/{listId}(listId= ${item.id})}"><div><h3>Name: <span th:text="${item.name}"></span></h3></div></a>
+                <a class="danger" th:href="@{/todolists/{listId}/delete(listId = ${item.id})}">x</a>
             </div>
         </main>
         <footer th:replace="~{layout :: page_footer}"></footer>

@@ -22,4 +22,10 @@ public class ToDoItemDTO
     @UpdateTimestamp
     private LocalDateTime updatedDate;
     private ToDoList toDoList;
+
+    @Override
+    public String toString()
+    {
+        return String.format("Id: %d, Task: %s, Description: %s", id, task, description);
+    }
 }

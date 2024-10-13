@@ -7,7 +7,10 @@
     color: white;
     font-family: Moderustic, sans-serif;
 }
-
+a.underline :hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
 a{
     text-decoration: none;
 }

@@ -1,8 +1,8 @@
 package com.rj.controller;
 
 import com.rj.dto.ToDoItemDTO;
+import com.rj.dto.ToDoListDTO;
 import com.rj.models.ToDoItem;
-import com.rj.models.ToDoList;
 import com.rj.services.ToDoItemService;
 import com.rj.services.ToDoListService;
 import jakarta.validation.Valid;
@@ -34,7 +34,7 @@ public class ToDoController
     }
 
     @GetMapping("/todoitems")
-    public String listToDoItems(Model model)
+    public String getAllToDoItems(Model model)
     {
         List<ToDoItemDTO> items = toDoItemService.findAllToDoItems();
         model.addAttribute("ToDoItems", items);
@@ -53,10 +53,10 @@ public class ToDoController
     public String getCreateToDoItem(Model model)
     {
         ToDoItem toDoItem = new ToDoItem();
-        List<ToDoList> toDoLists = toDoListService.findAllToDoLists();
+        List<ToDoListDTO> toDoLists = toDoListService.findAllToDoLists();
         model.addAttribute("toDoLists", toDoLists);
         model.addAttribute("toDoItem", toDoItem );
-        return "ToDoItems-New.html";
+        return "ToDoItem-New.html";
     }
 
     @GetMapping("/todoitems/{itemId}/edit")
@@ -82,7 +82,7 @@ public class ToDoController
     {
         if (bindingResult.hasErrors())
         {
-            return "ToDoItems-New.html";
+            return "ToDoItem-New.html";
         }
         toDoItemService.SaveToDoItem(toDoItem);
         return "redirect:/todoitems";

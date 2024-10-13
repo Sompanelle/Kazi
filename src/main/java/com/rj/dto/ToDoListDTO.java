@@ -11,8 +11,14 @@ import java.util.List;
 public class ToDoListDTO
 {
     private long id;
-    @NotEmpty(message = "ToDoList Requires a name")
+    @NotEmpty(message = "name cannot be empty")
     private String name;
     private String description;
     private List<ToDoItemDTO> todoitems;
+
+    @Override
+    public String toString()
+    {
+        return String.format("Id: %d, Name: %s, Description: %s", id, name, description);
+    }
 }
