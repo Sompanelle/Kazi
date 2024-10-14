@@ -59,6 +59,18 @@ public class ToDoController
         return "ToDoItem-New.html";
     }
 
+    @PostMapping("/todoitems/new")
+    public String postCreateToDoItem(@Valid @ModelAttribute("toDoItem") ToDoItemDTO toDoItem,
+                                     BindingResult bindingResult)
+    {
+        if (bindingResult.hasErrors())
+        {
+            return "ToDoItem-New.html";
+        }
+        toDoItemService.SaveToDoItem(toDoItem);
+        return "redirect:/todoitems";
+    }
+
     @GetMapping("/todoitems/{itemId}/edit")
     public String editToDoItem(@PathVariable("itemId") long itemId,
                                Model model)
@@ -76,17 +88,7 @@ public class ToDoController
     }
 
 
-    @PostMapping("/todoitems/new")
-    public String postCreateToDoItem(@Valid @ModelAttribute("toDoItem") ToDoItemDTO toDoItem,
-                                 BindingResult bindingResult)
-    {
-        if (bindingResult.hasErrors())
-        {
-            return "ToDoItem-New.html";
-        }
-        toDoItemService.SaveToDoItem(toDoItem);
-        return "redirect:/todoitems";
-    }
+
 
     @PostMapping("/todoitems/{itemId}/edit")
     public String postUpdateToDoItem(@PathVariable("itemId") long itemId,

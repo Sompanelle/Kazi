@@ -14,4 +14,7 @@ public interface ToDoItemService
     List<ToDoItemDTO> findAllToDoItems();
     ToDoItemDTO findItembyId(long itemId);
     List<ToDoItemDTO> findByListId(long listId);
+
+    void updateListItem(ToDoItemDTO toDoItemDTO, long listId);
+    void saveListItem(ToDoItemDTO toDoListDTO, long listId);
 }

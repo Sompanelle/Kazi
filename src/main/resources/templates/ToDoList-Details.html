@@ -11,9 +11,14 @@
 
     <main>
         <div class="center-container">
-            <h2>
-                <span th:text="${ToDoList.name}"></span>
-            </h2>
+
+            <div>
+                <h2 th:text="${ToDoList.name}">
+                </h2>
+                <p th:text="${ToDoList.description}">
+                </p>
+            </div>
+
             <a th:href="@{/todolists/{itemId}/new(itemId=${ToDoList.id})}"><button class="new">New</button></a>
         </div>
         <div class="center-container">

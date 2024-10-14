@@ -7,6 +7,9 @@
     color: white;
     font-family: Moderustic, sans-serif;
 }
+a.block{
+    display: block;
+}
 a.underline :hover{
     text-decoration: underline;
     text-decoration-thickness: 2px;

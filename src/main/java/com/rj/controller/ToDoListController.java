@@ -27,7 +27,6 @@ public class ToDoListController {
         this.toDoItemService = toDoItemService;
     }
 
-
     //Get Create ToDoLists
     @GetMapping("/todolists/new")
     public String getCreateToDoList(Model model)
@@ -36,6 +35,96 @@ public class ToDoListController {
         model.addAttribute("toDoList", toDoList);
         return "ToDoList-New";
     }
+
+    //Post Create ToDoList
+    @PostMapping("/todolists/new")
+    public String postCreateToDoList(@Valid @ModelAttribute("toDoList") ToDoListDTO toDoListDTO,
+                                     BindingResult bindingResult,
+                                     Model model)
+    {
+        if (!bindingResult.hasErrors())
+        {
+            toDoListService.createToDoList(toDoListDTO);
+            return "redirect:/todolists";
+
+        }
+        return "ToDoList-New";
+    }
+
+    //Get all ToDoLists
+    @GetMapping("/todolists")
+    public String getAllToDoLists(Model model)
+    {
+        List<ToDoListDTO> Lists = toDoListService.findAllToDoLists();
+        model.addAttribute("ToDoLists", Lists);
+        return "ToDoLists-List";
+    }
+
+    //Get ToDoList by id
+    @GetMapping("/todolists/{listId}")
+    public String getToDoListById(@PathVariable("listId") long listId,
+                                  Model model)
+    {
+        ToDoListDTO list = toDoListService.findToDoListbyId(listId);
+        List<ToDoItemDTO> items = toDoItemService.findByListId(listId);
+        if (list == null) {
+            return "redirect:/todolists";
+        }
+        model.addAttribute("Items", items);
+        model.addAttribute("ToDoList", list);
+        return "ToDoList-Details";
+    }
+
+    //Get Update ToDoList
+    @GetMapping("/todolists/{listId}/edit")
+    public String getUpdateToDoListById(@PathVariable("listId") long listId,
+                                        Model model)
+    {
+        ToDoListDTO list = toDoListService.findToDoListbyId(listId);
+        if (list == null)
+        {
+            return "redirect:/todolists";
+        }
+        model.addAttribute("toDoList", list);
+        return "ToDoList-Edit";
+    }
+
+    //Post Update ToDoList
+    @PostMapping("todolists/{listId}/edit")
+    public String postUpdateToDoListById(@PathVariable("listId") long listId,
+                                         @Valid @ModelAttribute("toDoList") ToDoListDTO toDoListDTO,
+                                         BindingResult bindingResult,
+                                         Model model)
+    {
+        ToDoListDTO listDTO = toDoListService.findToDoListbyId(listId);
+        if (listDTO == null)
+        {
+            return "redirect:/todolists";
+        }
+        if (bindingResult.hasErrors())
+        {
+            return "ToDoList-Edit";
+        }
+        toDoListService.updateList(toDoListDTO);
+        return "redirect:/todolists";
+    }
+
+    //Delete ToDoList by id
+    @GetMapping("/todolists/{listId}/delete")
+    public String getDeleteToDoListById(@PathVariable("listId") long listId,
+                                     Model model)
+    {
+        ToDoListDTO toDoList = toDoListService.findToDoListbyId(listId);
+        if (toDoList != null)
+        {
+            toDoListService.deleteListById(listId);
+            return "redirect:/todolists";
+        }
+        return "redirect:/todolists";
+    }
+
+
+
 
     //Get Create ToDoItem under Specific ToDoList
     @GetMapping("/todolists/{listId}/new")
@@ -51,61 +140,7 @@ public class ToDoListController {
         return "redirect:/todolists";
     }
 
-
-    //Get all ToDoLists
-    @GetMapping("/todolists")
-    public String getAllToDoLists(Model model) {
-        List<ToDoListDTO> Lists = toDoListService.findAllToDoLists();
-        model.addAttribute("ToDoLists", Lists);
-        return "ToDoLists-List";
-    }
-
-
-    //Get Specific ToDoList
-    @GetMapping("/todolists/{listId}")
-    public String GetToDoListById(@PathVariable("listId") long listId,
-                                  Model model) {
-        ToDoListDTO list = toDoListService.findToDoListbyId(listId);
-        List<ToDoItemDTO> items = toDoItemService.findByListId(listId);
-        if (list == null) {
-            return "redirect:/todolists";
-        }
-        model.addAttribute("Items", items);
-        model.addAttribute("ToDoList", list);
-        return "ToDoList-Details";
-    }
-
-    //Delete Specific ToDoList
-    @GetMapping("/todolists/{listId}/delete")
-    public String DeleteToDoListById(@PathVariable("listId") long listId,
-                                     Model model)
-    {
-        ToDoListDTO toDoList = toDoListService.findToDoListbyId(listId);
-        if (toDoList != null)
-        {
-            toDoListService.DeleteListById(listId);
-            return "redirect:/todolists";
-        }
-        return "redirect:/todolists";
-    }
-
-    //Post Create ToDoList
-    @PostMapping("/todolists/new")
-    public String postCreateToDoList(@Valid @ModelAttribute("toDoList") ToDoListDTO toDoListDTO,
-                                     BindingResult bindingResult,
-                                     Model model)
-    {
-        if (!bindingResult.hasErrors())
-        {
-            toDoListService.saveToDoList(toDoListDTO);
-            return "redirect:/todolists";
-
-        }
-        return "ToDoList-New";
-    }
-
-
-    //Post Create ToDoItem under ToDoList
+    //Post Create Child ToDoItem
     @PostMapping("/todolists/{listId}/new")
     public String postCreateChildToDoItem(@PathVariable("listId") long listId,@ModelAttribute("toDoItem") ToDoItemDTO toDoItemDTO,
                                      BindingResult bindingResult, Model model)
@@ -115,11 +150,11 @@ public class ToDoListController {
         {
             return "ToDoItem-New-Child";
         }
-        toDoListService.saveListItem(toDoItemDTO, listId);
+        toDoItemService.saveListItem(toDoItemDTO, listId);
         return "redirect:/todolists/"+listId;
     }
 
-    //Get Update ToDoItem under ToDoList
+    //Get Update Child ToDoItem
     @GetMapping("/todolists/{listId}/{itemId}/edit")
     public String getUpdateChildToDoItem(@PathVariable("listId") long listId,
                                          @PathVariable("itemId") long itemId, Model model)
@@ -140,6 +175,7 @@ public class ToDoListController {
         return "ToDoList-Edit-Child";
     }
 
+    //Post Update Child ToDoItem
     @PostMapping("/todolists/{listId}/{itemId}/edit")
     public String postUpdateChildToDoItem(@PathVariable("listId") long listId,
                                           @PathVariable("itemId") long itemId,
@@ -152,10 +188,11 @@ public class ToDoListController {
         {
             return "redirect:/todolists/"+ listId;
         }
-        toDoListService.updateListItem(ToDoItem, listId);
+        toDoItemService.updateListItem(ToDoItem, listId);
         return "redirect:/todolists/"+listId;
     }
 
+    //Delete Child ToDoItem
     @GetMapping("/todolists/{listId}/{itemId}/delete")
     public String getDeleteChildToDoItem(@PathVariable("listId") long listId,
                                          @PathVariable("itemId") long itemId,
