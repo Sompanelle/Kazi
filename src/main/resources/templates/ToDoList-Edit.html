@@ -17,11 +17,11 @@
         <div class="">
 
             <div class="center-container">
-                <h1>New ToDo List</h1>
+                <h1>Edit ToDo List</h1>
             </div>
             <div>
 
-                <form method="post" th:action="@{/todolists/new}" th:object="${toDoList}">
+                <form method="post" th:action="@{/todolists/{listId}/edit(listId=${toDoList.id})}" th:object="${toDoList}">
 
                     <input class="form" type="hidden" th:field="*{id}">
 
@@ -41,6 +41,11 @@
                     </div>
 
                 </form>
+
+                <div class="center-container" th:object="${toDoList}">
+                    <p class="danger"><a class="danger" th:href="@{~/todolists/{listId}/delete(listId=*{id})}">Delete?</a></p>
+                </div>
+
             </div>
 
         </div>

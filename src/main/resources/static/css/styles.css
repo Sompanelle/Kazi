@@ -7,6 +7,11 @@
     color: white;
     font-family: Moderustic, sans-serif;
 }
+a.block{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
 a.underline :hover{
     text-decoration: underline;
     text-decoration-thickness: 2px;
@@ -21,14 +26,20 @@ a.danger{
 a:hover.danger{
     color: var(--danger-shade);
 }
-a:hover.success{
+a:hover > h4.success{
     color: var(--success-color);;
 }
 a:hover{
     color: blueviolet;
 }
-a.edit:hover{
+a:hover > h4.edit{
     color: #9F9D9D;
+}
+h4.danger{
+    color: var(--danger-color);
+}
+a:hover > h4.danger{
+    color: var(--danger-shade);
 }
 
 body {
@@ -120,9 +131,6 @@ div.header{
 button.form{
     width: 60%;
 }
-button:hover{
-    font-weight: bold;
-}
 div.form-input{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -143,6 +151,13 @@ div.card {
     padding: 15px;
     text-align: center;
     color: white;
+}
+div.card-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    margin: 5px;
+    gap: 10px;
 }
 select.select-input{
     padding: 10px;

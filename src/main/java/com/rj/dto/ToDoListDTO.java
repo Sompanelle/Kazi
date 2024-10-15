@@ -14,7 +14,7 @@ public class ToDoListDTO
     @NotEmpty(message = "name cannot be empty")
     private String name;
     private String description;
-    private List<ToDoItemDTO> todoitems;
+    private List<ToDoItemDTO> toDoItems;
 
     @Override
     public String toString()

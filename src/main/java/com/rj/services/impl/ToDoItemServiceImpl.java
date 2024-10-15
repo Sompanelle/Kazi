@@ -1,8 +1,11 @@
 package com.rj.services.impl;
 
 import com.rj.dto.ToDoItemDTO;
+import com.rj.mapper.ToDoItemMapper;
 import com.rj.models.ToDoItem;
+import com.rj.models.ToDoList;
 import com.rj.repository.ToDoItemRepository;
+import com.rj.repository.ToDoListRepository;
 import com.rj.services.ToDoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +19,13 @@ import static com.rj.mapper.ToDoItemMapper.mapToItem;
 public class ToDoItemServiceImpl implements ToDoItemService
 {
     private ToDoItemRepository toDoItemRepository;
+    private ToDoListRepository toDoListRepository;
 
     @Autowired
-    public ToDoItemServiceImpl(ToDoItemRepository toDoItemRepository)
+    public ToDoItemServiceImpl(ToDoItemRepository toDoItemRepository, ToDoListRepository toDoListRepository)
     {
         this.toDoItemRepository = toDoItemRepository;
+        this.toDoListRepository = toDoListRepository;
     }
 
     @Override
@@ -67,5 +72,22 @@ public class ToDoItemServiceImpl implements ToDoItemService
         toDoItemRepository.delete(item);
     }
 
+    @Override
+    public void saveListItem(ToDoItemDTO toDoListDTO, long listId)
+    {
+        ToDoItem item = ToDoItemMapper.mapToItem(toDoListDTO);
+        ToDoList toDoList = toDoListRepository.findById(listId).get();
+        item.setToDoList(toDoList);
+        toDoItemRepository.save(item);
+
+    }
+
+    @Override
+    public void updateListItem(ToDoItemDTO toDoItemDTO, long listId) {
+        ToDoItem item = ToDoItemMapper.mapToItem(toDoItemDTO);
+        ToDoList toDoList = toDoListRepository.findById(listId).get();
+        item.setToDoList(toDoList);
+        toDoItemRepository.save(item);
+    }
 
 }

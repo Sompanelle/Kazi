@@ -30,7 +30,7 @@ public class ToDoController
     @GetMapping("/")
     public String Index(Model model)
     {
-        return "Index.html";
+        return "Index";
     }
 
     @GetMapping("/todoitems")
@@ -38,7 +38,7 @@ public class ToDoController
     {
         List<ToDoItemDTO> items = toDoItemService.findAllToDoItems();
         model.addAttribute("ToDoItems", items);
-        return "ToDoItems-List.html";
+        return "ToDoItems-List";
     }
 
     @GetMapping("/todoitems/search")
@@ -46,7 +46,7 @@ public class ToDoController
     {
         List<ToDoItemDTO> items = toDoItemService.SearchItemByTask(query);
         model.addAttribute("ToDoItems", items);
-        return "ToDoItems-List.html";
+        return "ToDoItems-List";
     }
 
     @GetMapping("/todoitems/new")
@@ -56,7 +56,19 @@ public class ToDoController
         List<ToDoListDTO> toDoLists = toDoListService.findAllToDoLists();
         model.addAttribute("toDoLists", toDoLists);
         model.addAttribute("toDoItem", toDoItem );
-        return "ToDoItem-New.html";
+        return "ToDoItem-New";
+    }
+
+    @PostMapping("/todoitems/new")
+    public String postCreateToDoItem(@Valid @ModelAttribute("toDoItem") ToDoItemDTO toDoItem,
+                                     BindingResult bindingResult)
+    {
+        if (bindingResult.hasErrors())
+        {
+            return "ToDoItem-New";
+        }
+        toDoItemService.SaveToDoItem(toDoItem);
+        return "redirect:/todoitems";
     }
 
     @GetMapping("/todoitems/{itemId}/edit")
@@ -64,6 +76,10 @@ public class ToDoController
                                Model model)
     {
         ToDoItemDTO item = toDoItemService.findItembyId(itemId);
+        if (item == null)
+        {
+            return "redirect:/todoitems";
+        }
         model.addAttribute("toDoItem", item);
         return "ToDoItem-Edit";
     }
@@ -76,17 +92,7 @@ public class ToDoController
     }
 
 
-    @PostMapping("/todoitems/new")
-    public String postCreateToDoItem(@Valid @ModelAttribute("toDoItem") ToDoItemDTO toDoItem,
-                                 BindingResult bindingResult)
-    {
-        if (bindingResult.hasErrors())
-        {
-            return "ToDoItem-New.html";
-        }
-        toDoItemService.SaveToDoItem(toDoItem);
-        return "redirect:/todoitems";
-    }
+
 
     @PostMapping("/todoitems/{itemId}/edit")
     public String postUpdateToDoItem(@PathVariable("itemId") long itemId,

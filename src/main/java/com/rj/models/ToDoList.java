@@ -21,6 +21,6 @@ public class ToDoList
     private long id;
     private String name;
     private String description;
-    @OneToMany(mappedBy = "toDoList", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "toDoList", cascade = CascadeType.ALL)
     private List<ToDoItem> toDoItems;
 }
