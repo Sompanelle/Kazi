@@ -26,8 +26,25 @@
         <div class="card" th:each="item :${Items}">
             <h3>Task: <span th:text="${item.task}"></span></h3>
             <h3 th:if="${!item.description.isEmpty()}">Description: <span  th:text="${item.description}"></span></h3>
-            <h4><a class="edit" th:href="@{/todolists/{listId}/{itemId}/edit(itemId=${item.id},listId=${ToDoList.id})}">Edit</a></h4>
-            <h4><a class="success" th:href="@{/todolists/{listId}/{itemId}/delete(itemId=${item.id},listId=${listId})}">Complete</a></h4>
+            <div class="card-options">
+
+                <a class="block" th:href="@{/todolists/{listId}/{itemId}/edit(itemId=${item.id},listId=${ToDoList.id})}">
+                        <h4 class="edit">
+
+                            Edit
+
+                        </h4>
+                </a>
+
+                <a class="block" th:href="@{/todolists/{listId}/{itemId}/delete(itemId=${item.id},listId=${listId})}">
+                        <h4 class="success">
+
+                            Complete
+
+                        </h4>
+                </a>
+
+            </div>
         </div>
     </main>
 

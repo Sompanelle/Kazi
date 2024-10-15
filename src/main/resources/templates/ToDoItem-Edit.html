@@ -16,11 +16,9 @@
         </div>
 
         <div>
-            <form method="post" th:action="@{/todoitems/{itemId}/edit(itemId=${toDoItem.id})}" th:object="${toDoItem}">
+            <form method="post" th:action="@{/todolists/{itemId}/edit(listId = ${listId})}" th:object="${toDoItem}">
 
                 <input class="form" type="hidden" th:field="*{id}">
-
-                <input class="form" type="hidden" th:field="*{toDoList}">
 
                 <div class="form-input">
                     <input class="form" type="text" id="Task" name="Task" placeholder="Task..." th:field="*{task}">
@@ -30,6 +28,8 @@
                 <div class="form-input">
                     <input class="form" type="text" id="Description" name="Description" placeholder="Description..." th:field="*{description}">
                 </div>
+
+
 
                 <div class="form-button">
                     <button class="form save" type="submit">Save</button>

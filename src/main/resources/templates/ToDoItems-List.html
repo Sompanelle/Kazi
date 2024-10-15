@@ -35,8 +35,12 @@
                 <h3>List: <span th:text="${item.toDoList.name}"></span></h3>
                 <h3>Task: <span th:text="${item.task}"></span></h3>
                 <h3>Description: <span  th:text="${item.description}"></span></h3>
-                <h4><a class="edit" th:href="@{/todoitems/{itemId}/edit(itemId=${item.id})}">Edit</a></h4>
-                <h4><a class="success" th:href="@{/todoitems/{itemId}/delete(itemId=${item.id})}">Complete</a></h4>
+                <a class="block" th:href="@{/todoitems/{itemId}/edit(itemId=${item.id})}">
+                    <h4 class="edit">Edit</h4>
+                </a>
+                <a class="block" th:href="@{/todoitems/{itemId}/delete(itemId=${item.id})}">
+                    <h4 class="success">Complete</h4>
+                </a>
             </div>
         </main>
 
