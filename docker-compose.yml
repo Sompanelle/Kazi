@@ -8,16 +8,16 @@ services:
     depends_on:
         - db
     environment:
-      - DB_URL=jdbc:postgresql://db:5432/todo
-      - DB_USER=box
-      - DB_PASS=man
+      - DB_URL=jdbc:postgresql://db:5432/${DBName}
+      - DB_USER=${DBUser}
+      - DB_PASS=${DBPass}
 
   db:
     image: postgres
     container_name: db
     environment:
-      - POSTGRES_USER=box
-      - POSTGRES_PASSWORD=man
-      - POSTGRES_DB=todo
+      - POSTGRES_USER=${DBUser}
+      - POSTGRES_PASSWORD=${DBPass}
+      - POSTGRES_DB=${DBName}
     ports:
       - "5433:5432"
