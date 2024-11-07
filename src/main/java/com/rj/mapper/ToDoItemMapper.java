@@ -12,7 +12,7 @@ public class ToDoItemMapper
     public static ToDoItemDTO mapToDoDTO(ToDoItem ToDoItem)
     {
         ToDoItemDTO itemDto = ToDoItemDTO.builder()
-                .id(ToDoItem.getId())
+                .itemId(ToDoItem.getItemId())
                 .task(ToDoItem.getTask())
                 .description(ToDoItem.getDescription())
                 .creationDate(ToDoItem.getCreationDate())
@@ -27,7 +27,7 @@ public class ToDoItemMapper
     public static ToDoItem mapToItem(ToDoItemDTO toDoItem)
     {
         ToDoItem item = ToDoItem.builder()
-                .id(toDoItem.getId())
+                .itemId(toDoItem.getItemId())
                 .task(toDoItem.getTask())
                 .description(toDoItem.getDescription())
                 .creationDate(toDoItem.getCreationDate())

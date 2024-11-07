@@ -18,9 +18,14 @@ public class ToDoList
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name="listId")
+    private long listId;
     private String name;
     private String description;
     @OneToMany(mappedBy = "toDoList", cascade = CascadeType.ALL)
     private List<ToDoItem> toDoItems;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    private AppUser user;
 }

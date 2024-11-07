@@ -23,7 +23,7 @@
 
           <form method="post" th:action="@{/todoitems/new}" th:object="${toDoItem}">
 
-            <input class="form" type="hidden" th:field="*{id}">
+            <input class="form" type="hidden" th:field="*{itemId}">
 
             <div class="form-input">
               <input class="form" type="text" id="Task" name="Task" placeholder="Task..." th:field="*{task}">
@@ -37,7 +37,7 @@
             <div class="form-input">
               <select th:field="*{toDoList}" class="select-input">
                 <option class="option-input" value="0">Select Option</option>
-                <option class="option-input"  th:each="list: ${toDoLists}" th:text="${list.name}" th:value="${list.id}">
+                <option class="option-input"  th:each="list: ${toDoLists}" th:text="${list.name}" th:value="*{list.listId}">
                 </option>
               </select>
 

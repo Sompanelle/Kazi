@@ -21,9 +21,9 @@
             </div>
             <div>
 
-                <form method="post" th:action="@{/todolists/{listId}/edit(listId=${toDoList.id})}" th:object="${toDoList}">
+                <form method="post" th:action="@{/todolists/{listId}/edit(listId=${toDoList.listId})}" th:object="${toDoList}">
 
-                    <input class="form" type="hidden" th:field="*{id}">
+                    <input class="form" type="hidden" th:field="*{listId}">
 
 
                     <div class="form-input">
@@ -43,7 +43,7 @@
                 </form>
 
                 <div class="center-container" th:object="${toDoList}">
-                    <p class="danger"><a class="danger" th:href="@{~/todolists/{listId}/delete(listId=*{id})}">Delete?</a></p>
+                    <p class="danger"><a class="danger" th:href="@{~/todolists/{listId}/delete(listId=*{listId})}">Delete?</a></p>
                 </div>
 
             </div>

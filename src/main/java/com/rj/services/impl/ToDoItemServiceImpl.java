@@ -50,13 +50,13 @@ public class ToDoItemServiceImpl implements ToDoItemService
     @Override
     public ToDoItemDTO findItembyId(long itemId)
     {
-        ToDoItem item = toDoItemRepository.findById(itemId).get();
+        ToDoItem item = toDoItemRepository.findByItemId(itemId).get();
         return mapToDoDTO(item);
     }
 
     @Override
     public List<ToDoItemDTO> findByListId(long listId) {
-        List<ToDoItem> items = toDoItemRepository.findByToDoListId(listId);
+        List<ToDoItem> items = toDoItemRepository.findByToDoListListId(listId);
         return items.stream().map((item) -> mapToDoDTO(item)).collect(Collectors.toList());
     }
 
@@ -68,7 +68,7 @@ public class ToDoItemServiceImpl implements ToDoItemService
 
     @Override
     public void deleteItembyId(long itemId) {
-        ToDoItem item = toDoItemRepository.findById(itemId).get();
+        ToDoItem item = toDoItemRepository.findByItemId(itemId).get();
         toDoItemRepository.delete(item);
     }
 
@@ -76,7 +76,7 @@ public class ToDoItemServiceImpl implements ToDoItemService
     public void saveListItem(ToDoItemDTO toDoListDTO, long listId)
     {
         ToDoItem item = ToDoItemMapper.mapToItem(toDoListDTO);
-        ToDoList toDoList = toDoListRepository.findById(listId).get();
+        ToDoList toDoList = toDoListRepository.findByListId(listId).get();
         item.setToDoList(toDoList);
         toDoItemRepository.save(item);
 
@@ -85,7 +85,7 @@ public class ToDoItemServiceImpl implements ToDoItemService
     @Override
     public void updateListItem(ToDoItemDTO toDoItemDTO, long listId) {
         ToDoItem item = ToDoItemMapper.mapToItem(toDoItemDTO);
-        ToDoList toDoList = toDoListRepository.findById(listId).get();
+        ToDoList toDoList = toDoListRepository.findByListId(listId).get();
         item.setToDoList(toDoList);
         toDoItemRepository.save(item);
     }

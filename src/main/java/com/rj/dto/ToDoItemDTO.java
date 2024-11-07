@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class ToDoItemDTO
 {
-    private long id;
+    private long itemId;
     @NotEmpty(message = "Task cannot be empty")
     private String task;
     private String description;
@@ -26,6 +26,6 @@ public class ToDoItemDTO
     @Override
     public String toString()
     {
-        return String.format("Id: %d, Task: %s, Description: %s", id, task, description);
+        return String.format("Id: %d, Task: %s, Description: %s", itemId, task, description);
     }
 }

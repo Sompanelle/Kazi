@@ -19,16 +19,16 @@
                 </p>
             </div>
 
-            <a th:href="@{/todolists/{itemId}/new(itemId=${ToDoList.id})}"><button class="new">New</button></a>
+            <a th:href="@{/todolists/{itemId}/new(itemId=${ToDoList.listId})}"><button class="new">New</button></a>
         </div>
         <div class="center-container">
         </div>
         <div class="card" th:each="item :${Items}">
-            <h3>Task: <span th:text="${item.task}"></span></h3>
+            <h3><span th:text="${item.task}"></span></h3>
             <h3 th:if="${!item.description.isEmpty()}">Description: <span  th:text="${item.description}"></span></h3>
             <div class="card-options">
 
-                <a class="block" th:href="@{/todolists/{listId}/{itemId}/edit(itemId=${item.id},listId=${ToDoList.id})}">
+                <a class="block" th:href="@{/todolists/{listId}/{itemId}/edit(itemId=${item.itemId},listId=${ToDoList.listId})}">
                         <h4 class="edit">
 
                             Edit
@@ -36,7 +36,7 @@
                         </h4>
                 </a>
 
-                <a class="block" th:href="@{/todolists/{listId}/{itemId}/delete(itemId=${item.id},listId=${listId})}">
+                <a class="block" th:href="@{/todolists/{listId}/{itemId}/delete(itemId=${item.itemId},listId=${listId})}">
                         <h4 class="success">
 
                             Complete

@@ -103,7 +103,7 @@ public class ToDoController
         {
             return "ToDoItem-Edit";
         }
-        toDoItem.setId(itemId);
+        toDoItem.setItemId(itemId);
         toDoItemService.updateItem(toDoItem);
         return "redirect:/todoitems";
     }

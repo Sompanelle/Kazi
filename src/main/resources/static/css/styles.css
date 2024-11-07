@@ -159,6 +159,9 @@ div.card-options{
     margin: 5px;
     gap: 10px;
 }
+div.login-form{
+    text-align: center;
+}
 select.select-input{
     padding: 10px;
     background-color: transparent;

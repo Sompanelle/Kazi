@@ -20,7 +20,8 @@ public class ToDoItem
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name="itemId")
+    private long itemId;
     private String task;
     private String description;
     @CreationTimestamp
@@ -28,7 +29,7 @@ public class ToDoItem
     @UpdateTimestamp
     private LocalDateTime updatedDate;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "todolists_id")
+    @JoinColumn(name = "listId")
     private ToDoList toDoList;
 }
 

@@ -12,7 +12,7 @@ public class ToDoListMapper
     public static ToDoListDTO maptoListDTO(ToDoList toDoList)
     {
         ToDoListDTO listDTO = ToDoListDTO.builder()
-                .id(toDoList.getId())
+                .listId(toDoList.getListId())
                 .name(toDoList.getName())
                 .description(toDoList.getDescription())
                 .toDoItems(toDoList.getToDoItems().stream().map((item) -> mapToDoDTO(item)).collect(Collectors.toList()))
@@ -24,7 +24,7 @@ public class ToDoListMapper
     public static ToDoList maptoList(ToDoListDTO listDTO)
     {
         ToDoList list = ToDoList.builder()
-                .id(listDTO.getId())
+                .listId(listDTO.getListId())
                 .name(listDTO.getName())
                 .description(listDTO.getDescription())
                 .build();

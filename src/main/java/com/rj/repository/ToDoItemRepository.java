@@ -10,8 +10,8 @@ import java.util.Optional;
 
 public interface ToDoItemRepository extends JpaRepository<ToDoItem, Long>
 {
-    Optional<ToDoItem> findById(long Id);
+    Optional<ToDoItem> findByItemId(long Id);
     @Query("Select t from ToDoItem t Where t.task Like concat('%', :query, '%') ")
     List<ToDoItem> SearchbyTask(String query);
-    List<ToDoItem> findByToDoListId(long listId);
+    List<ToDoItem> findByToDoListListId(long listId);
 }

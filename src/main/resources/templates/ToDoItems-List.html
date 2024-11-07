@@ -32,13 +32,13 @@
                 </form>
             </div>
             <div class="card" th:each="item :${ToDoItems}">
-                <h3>List: <span th:text="${item.toDoList.name}"></span></h3>
-                <h3>Task: <span th:text="${item.task}"></span></h3>
-                <h3>Description: <span  th:text="${item.description}"></span></h3>
-                <a class="block" th:href="@{/todoitems/{itemId}/edit(itemId=${item.id})}">
+                <h3><span th:text="${item.toDoList.name}"></span></h3>
+                <h3><span th:text="${item.task}"></span></h3>
+                <h3 th:if="${!item.description.isEmpty()}">Description: <span  th:text="${item.description}"></span></h3>
+                <a class="block" th:href="@{/todoitems/{itemId}/edit(itemId=${item.itemId})}">
                     <h4 class="edit">Edit</h4>
                 </a>
-                <a class="block" th:href="@{/todoitems/{itemId}/delete(itemId=${item.id})}">
+                <a class="block" th:href="@{/todoitems/{itemId}/delete(itemId=${item.itemId})}">
                     <h4 class="success">Complete</h4>
                 </a>
             </div>
