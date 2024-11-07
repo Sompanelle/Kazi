@@ -28,7 +28,7 @@ public class ToDoController
     }
 
     @GetMapping("/")
-    public String Index(Model model)
+    public String Index()
     {
         return "Index";
     }

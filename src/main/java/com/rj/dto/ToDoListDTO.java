@@ -16,7 +16,7 @@ public class ToDoListDTO
     private String name;
     private String description;
     private List<ToDoItemDTO> toDoItems;
-    private AppUser user;
+    private UserDTO user;
 
     @Override
     public String toString()

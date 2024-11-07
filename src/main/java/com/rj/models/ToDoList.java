@@ -1,5 +1,6 @@
 package com.rj.models;
 
+import com.rj.dto.ToDoListDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,4 +29,5 @@ public class ToDoList
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private AppUser user;
+
 }

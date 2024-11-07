@@ -1,6 +1,8 @@
 package com.rj.mapper;
 
 import com.rj.dto.ToDoListDTO;
+import com.rj.dto.UserDTO;
+import com.rj.models.AppUser;
 import com.rj.models.ToDoList;
 
 import java.util.stream.Collectors;
@@ -16,6 +18,7 @@ public class ToDoListMapper
                 .name(toDoList.getName())
                 .description(toDoList.getDescription())
                 .toDoItems(toDoList.getToDoItems().stream().map((item) -> mapToDoDTO(item)).collect(Collectors.toList()))
+                .user(new UserDTO(toDoList.getUser()))
                 .build();
 
         return listDTO;

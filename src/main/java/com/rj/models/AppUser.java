@@ -1,5 +1,6 @@
 package com.rj.models;
 
+import com.rj.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,6 +38,11 @@ public class AppUser implements UserDetails
         this.username = Username;
         this.password = Password;
         this.authorities = Authorities;
+    }
+
+    public AppUser(UserDTO UserDTO)
+    {
+        this.username=UserDTO.getUsername();
     }
 
 }

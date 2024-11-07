@@ -2,11 +2,14 @@ package com.rj.controller;
 
 import com.rj.dto.ToDoItemDTO;
 import com.rj.dto.ToDoListDTO;
+import com.rj.dto.UserDTO;
+import com.rj.models.AppUser;
 import com.rj.models.ToDoItem;
 import com.rj.models.ToDoList;
 import com.rj.services.ToDoItemService;
 import com.rj.services.ToDoListService;
 import jakarta.validation.Valid;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,7 +47,8 @@ public class ToDoListController {
     {
         if (!bindingResult.hasErrors())
         {
-            toDoListService.createToDoList(toDoListDTO);
+            UserDTO user = new UserDTO((AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+            toDoListService.createToDoList(toDoListDTO, user);
             return "redirect:/todolists";
 
         }
@@ -55,7 +59,8 @@ public class ToDoListController {
     @GetMapping("/todolists")
     public String getAllToDoLists(Model model)
     {
-        List<ToDoListDTO> Lists = toDoListService.findAllToDoLists();
+        UserDTO user = new UserDTO((AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        List<ToDoListDTO> Lists = toDoListService.findListByUser(user);
         model.addAttribute("ToDoLists", Lists);
         return "ToDoLists-List";
     }
