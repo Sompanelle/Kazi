@@ -1,6 +1,8 @@
 package com.rj.services;
 
 import com.rj.dto.ToDoItemDTO;
+import com.rj.dto.UserDTO;
+import com.rj.models.AppUser;
 import com.rj.models.ToDoItem;
 
 import java.util.List;
@@ -12,6 +14,7 @@ public interface ToDoItemService
     ToDoItem SaveToDoItem(ToDoItemDTO toDoItem);
     List<ToDoItemDTO> SearchItemByTask(String query);
     List<ToDoItemDTO> findAllToDoItems();
+    List<ToDoItemDTO> findToDoItemsByUser(UserDTO user);
     ToDoItemDTO findItembyId(long itemId);
     List<ToDoItemDTO> findByListId(long listId);
 
