@@ -2,11 +2,14 @@ package com.rj.controller;
 
 import com.rj.dto.ToDoItemDTO;
 import com.rj.dto.ToDoListDTO;
+import com.rj.dto.UserDTO;
+import com.rj.models.AppUser;
 import com.rj.models.ToDoItem;
 import com.rj.services.ToDoItemService;
 import com.rj.services.ToDoListService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,7 +39,8 @@ public class ToDoController
     @GetMapping("/todoitems")
     public String getAllToDoItems(Model model)
     {
-        List<ToDoItemDTO> items = toDoItemService.findAllToDoItems();
+        UserDTO user = new UserDTO((AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        List<ToDoItemDTO> items = toDoItemService.findToDoItemsByUser(user);
         model.addAttribute("ToDoItems", items);
         return "ToDoItems-List";
     }
