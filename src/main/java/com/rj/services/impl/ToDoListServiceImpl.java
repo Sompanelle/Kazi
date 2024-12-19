@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.rj.mapper.ToDoListMapper.maptoList;
-import static com.rj.mapper.ToDoListMapper.maptoListDTO;
 
 @Service
 public class ToDoListServiceImpl implements ToDoListService

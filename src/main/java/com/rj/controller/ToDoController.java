@@ -8,7 +8,6 @@ import com.rj.models.ToDoItem;
 import com.rj.services.ToDoItemService;
 import com.rj.services.ToDoListService;
 import jakarta.validation.Valid;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
