@@ -60,7 +60,7 @@ public class ToDoListController {
     public String getAllToDoLists(Model model)
     {
         UserDTO user = new UserDTO((AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        List<ToDoListDTO> Lists = toDoListService.findListByUser(user);
+        List<ToDoListDTO> Lists = toDoListService.findListsByUser(user);
         model.addAttribute("ToDoLists", Lists);
         return "ToDoLists-List";
     }
@@ -101,6 +101,7 @@ public class ToDoListController {
                                          BindingResult bindingResult,
                                          Model model)
     {
+        UserDTO user = new UserDTO(( AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         ToDoListDTO listDTO = toDoListService.findToDoListbyId(listId);
         if (listDTO == null)
         {
@@ -110,7 +111,7 @@ public class ToDoListController {
         {
             return "ToDoList-Edit";
         }
-        toDoListService.updateList(toDoListDTO);
+        toDoListService.updateList(toDoListDTO, user);
         return "redirect:/todolists";
     }
 

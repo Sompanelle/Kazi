@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <title>ToDoItems</title>
+    <script th:src="@{/js/scripts.js}"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap" rel="stylesheet">
 </head>
 <nav class="navbar" th:fragment="page_navbar">
-    <h1 class="header"><a th:href="@{/}">DbDemo!</a></h1>
+    <h2 class="header"><a class="title nav-link" th:href="@{/home}">Kazi!</a></h2>
         <div class="nav">
                     <div>
-                        <h2><a th:href="@{/todoitems}">ToDo Items</a></h2>
+                        <h2><a class="nav-link" th:href="@{/todoitems}">ToDo Items</a></h2>
                     </div>
                     <div>
-                        <h2><a th:href="@{/todolists}">ToDo Lists</a></h2>
+                        <h2><a class="nav-link" th:href="@{/todolists}">ToDo Lists</a></h2>
                     </div>
         </div>
 </nav>
@@ -24,6 +25,6 @@
 
 </body>
 <footer th:fragment="page_footer">
-    <h1 class="link">Created by Rj <a href="https://github.com/Sompanelle/" target="_blank">Github</a></h1>
+    <h3 class="link">Created by Rj <a href="https://github.com/Sompanelle/" target="_blank">Github</a></h3>
 </footer>
 </html>

@@ -8,6 +8,7 @@ import com.rj.models.ToDoItem;
 import com.rj.services.ToDoItemService;
 import com.rj.services.ToDoListService;
 import jakarta.validation.Valid;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,12 @@ public class ToDoController
     @GetMapping("/")
     public String Index()
     {
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home")
+    public String Home()
+    {
         return "Index";
     }
 
@@ -57,7 +64,8 @@ public class ToDoController
     public String getCreateToDoItem(Model model)
     {
         ToDoItem toDoItem = new ToDoItem();
-        List<ToDoListDTO> toDoLists = toDoListService.findAllToDoLists();
+        UserDTO user = new UserDTO ((AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        List<ToDoListDTO> toDoLists = toDoListService.findListsByUser(user);
         model.addAttribute("toDoLists", toDoLists);
         model.addAttribute("toDoItem", toDoItem );
         return "ToDoItem-New";

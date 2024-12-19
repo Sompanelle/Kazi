@@ -39,10 +39,11 @@ public class SecurityConfiguration
                 .csrf( csrf -> csrf.disable())
                 .authorizeHttpRequests( auth -> {
                     auth.requestMatchers("/css/styles.css").permitAll();
+                    auth.requestMatchers("/js/scripts.js").permitAll();
                     auth.requestMatchers("/login", "register").permitAll();
                     auth.requestMatchers("/todoitems/**").hasAnyAuthority("USER","ADMIN");
                     auth.requestMatchers("/todolists/**").hasAnyAuthority("USER","ADMIN");
-                    auth.requestMatchers("/").permitAll();
+                    auth.requestMatchers("/home", "/").permitAll();
 
                 })
                 .formLogin( form -> {

@@ -54,16 +54,18 @@ public class ToDoListServiceImpl implements ToDoListService
     }
 
     @Override
-    public List<ToDoListDTO> findListByUser(UserDTO UserDTO) {
+    public List<ToDoListDTO> findListsByUser(UserDTO UserDTO) {
         AppUser user = userRepo.findByUsername(UserDTO.getUsername()).get();
-        List<ToDoListDTO> list = listRepo.findByUser(user).stream().map(l -> maptoListDTO(l)).collect(Collectors.toList());
+        List<ToDoListDTO> list = listRepo.findAllByUser(user).stream().map(l -> ToDoListMapper.maptoListDTO(l)).collect(Collectors.toList());
         return list;
     }
 
     @Override
-    public void updateList(ToDoListDTO toDoListDTO)
+    public void updateList(ToDoListDTO toDoListDTO, UserDTO UserDTO)
     {
         ToDoList list = ToDoListMapper.maptoList(toDoListDTO);
+        AppUser user = userRepo.findByUsername(UserDTO.getUsername()).get();
+        list.setUser(user);
         listRepo.save(list);
     }
 

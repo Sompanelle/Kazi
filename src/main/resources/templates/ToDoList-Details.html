@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body onload="onLoad()">
 <div class="display-container">
 
     <nav th:replace="~{layout :: page_navbar}"></nav>
@@ -28,7 +28,7 @@
             <h3 th:if="${!item.description.isEmpty()}">Description: <span  th:text="${item.description}"></span></h3>
             <div class="card-options">
 
-                <a class="block" th:href="@{/todolists/{listId}/{itemId}/edit(itemId=${item.itemId},listId=${ToDoList.listId})}">
+                <a th:href="@{/todolists/{listId}/{itemId}/edit(itemId=${item.itemId},listId=${ToDoList.listId})}">
                         <h4 class="edit">
 
                             Edit
@@ -36,7 +36,7 @@
                         </h4>
                 </a>
 
-                <a class="block" th:href="@{/todolists/{listId}/{itemId}/delete(itemId=${item.itemId},listId=${listId})}">
+                <a th:href="@{/todolists/{listId}/{itemId}/delete(itemId=${item.itemId},listId=${listId})}">
                         <h4 class="success">
 
                             Complete

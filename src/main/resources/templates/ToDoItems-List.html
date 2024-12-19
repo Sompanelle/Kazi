@@ -14,7 +14,7 @@
 
 
 
-<body>
+<body onload="onLoad()">
     <div class="display-container">
 
         <nav th:replace="~{layout :: page_navbar}"></nav>
@@ -24,11 +24,11 @@
                 <h2>
                     To Do Items
                 </h2>
-                <a th:href="@{/todoitems/new}"><button class="new">New</button></a>
+                <a th:href="@{/todoitems/new}"><button class="new">Add</button></a>
             </div>
-            <div class="center-container">
+            <div class="search-container">
                 <form th:action="@{/todoitems/search}">
-                    <input type="text" class="form" placeholder="Search by Task" name="query">
+                    <input type="text" class="form-search" placeholder="Search by Task" name="query">
                 </form>
             </div>
             <div class="card" th:each="item :${ToDoItems}">

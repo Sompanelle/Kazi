@@ -8,9 +8,9 @@ import java.util.List;
 public interface ToDoListService
 {
     void createToDoList(ToDoListDTO toDoListDTO, UserDTO UserDTO);
-    void updateList(ToDoListDTO toDoListDTO);
+    void updateList(ToDoListDTO toDoListDT, UserDTO UserDTO);
     void deleteListById(long listId);
     List<ToDoListDTO> findAllToDoLists();
     ToDoListDTO findToDoListbyId(long listId);
-    List<ToDoListDTO> findListByUser(UserDTO UserDTO);
+    List<ToDoListDTO> findListsByUser(UserDTO UserDTO);
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
   </head>
 
-  <body>
+  <body onload="onLoad()">
   <div class="display-container">
     <nav th:replace="~{layout :: page_navbar}"></nav>
 
@@ -37,10 +37,9 @@
             <div class="form-input">
               <select th:field="*{toDoList}" class="select-input">
                 <option class="option-input" value="0">Select Option</option>
-                <option class="option-input"  th:each="list: ${toDoLists}" th:text="${list.name}" th:value="*{list.listId}">
+                <option class="option-input"  th:each="list: ${toDoLists}" th:text="${list.name}" th:value="${list.listId}">
                 </option>
               </select>
-
             </div>
 
             <div class="form-button">
